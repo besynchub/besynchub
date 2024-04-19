@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timings Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+    
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            flex-basis: 48%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .section h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        input[type="text"], select {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #dddddd;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        button {
+            width: calc(50% - 10px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<center>
+<div class="container">
+    <div class="section">
+        <h1>Enter Timings</h1>
+        
+        <select id="enterDay">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select></th></tr>
+        
+        <input id="enterTime1" type="time" step="1" placeholder="First Bell"><br>
+        <input id="enterTime2" type="time" step="1" placeholder="Second Bell"><br>
+        <input id="enterTime3" type="time" step="1" placeholder="Third Bell"><br>
+        <input id="enterTime4" type="time" step="1" placeholder="Fourth Bell"><br>
+        <input id="enterTime5" type="time" step="1" placeholder="Fifth Bell"><br>
+        <input id="enterTime6" type="time" step="1" placeholder="Sixth Bell"><br>
+        <input id="enterTime7" type="time" step="1" placeholder="Seventh Bell"><br>
+        <input id="enterTime8" type="time" step="1" placeholder="Eighth Bell"><br>
+        <input id="enterTime9" type="time" step="1" placeholder="Ninth Bell"><br>
+        <input id="enterTime10" type="time" step="1" placeholder="Tenth Bell"><br>
+        <input id="enterTime11" type="time" step="1" placeholder="Eleventh Bell"><br>
+        <input id="enterTime12" type="time" step="1" placeholder="Twelfth Bell"><br>
+
+        <button id="insert">INSERT</button>
+        <br><br>
+        <button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button>
+    </div>
+
+    <div class="section">
+        <h1>Find by Day</h1>
+        <select id="findDay">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+        <button id="find">FIND</button>
+
+        <h3 id="findTime1"></h3>
+        <h3 id="findTime2"></h3>
+        <h3 id="findTime3"></h3>
+        <h3 id="findTime4"></h3>
+        <h3 id="findTime5"></h3>
+        <h3 id="findTime6"></h3>
+        <h3 id="findTime7"></h3>
+        <h3 id="findTime8"></h3>
+        <h3 id="findTime9"></h3>
+        <h3 id="findTime10"></h3>
+        <h3 id="findTime11"></h3>
+        <h3 id="findTime12"></h3>
+    </div>
+</div>
+    
+
+    <script type="module">
+      
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+     
+      const firebaseConfig = {
+        apiKey: "AIzaSyC6g0ujKC-B6vFAqaHaPvvS-7R1-k9mwPU",
+        authDomain: "trial1-550a4.firebaseapp.com",
+        databaseURL: "https://trial1-550a4-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "trial1-550a4",
+        storageBucket: "trial1-550a4.appspot.com",
+        messagingSenderId: "207890229120",
+        appId: "1:207890229120:web:474073382527dff66f0365",
+        measurementId: "G-FJ729QV0XP"
+      };
+
+      
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+
+
+        
+
+        import {getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js"
+        
+        
+
+        const db = getDatabase();
+
+        var enterDay = document.querySelector("#enterDay");
+        var enterTime1 = document.querySelector("#enterTime1");
+        var enterTime2 = document.querySelector("#enterTime2");
+        var enterTime3 = document.querySelector("#enterTime3");
+        var enterTime4 = document.querySelector("#enterTime4");
+        var enterTime5 = document.querySelector("#enterTime5");
+        var enterTime6 = document.querySelector("#enterTime6");
+        var enterTime7 = document.querySelector("#enterTime7");
+        var enterTime8 = document.querySelector("#enterTime8");
+        var enterTime9 = document.querySelector("#enterTime9");
+        var enterTime10 = document.querySelector("#enterTime10");
+        var enterTime11 = document.querySelector("#enterTime11");
+        var enterTime12 = document.querySelector("#enterTime12");
+
+        var findDay = document.querySelector("#findDay");
+        var findTime1 = document.querySelector("#findTime1");
+        var findTime2 = document.querySelector("#findTime2");
+        var findTime3 = document.querySelector("#findTime3");
+        var findTime4 = document.querySelector("#findTime4");
+        var findTime5 = document.querySelector("#findTime5");
+        var findTime6 = document.querySelector("#findTime6");
+        var findTime7 = document.querySelector("#findTime7");
+        var findTime8 = document.querySelector("#findTime8");
+        var findTime9 = document.querySelector("#findTime9");
+        var findTime10 = document.querySelector("#findTime10");
+        var findTime11 = document.querySelector("#findTime11");
+        var findTime12 = document.querySelector("#findTime12");
+      
+
+        var insertBtn = document.querySelector("#insert");
+        var updateBtn = document.querySelector("#update");
+        var removeBtn = document.querySelector("#remove");
+        var findBtn = document.querySelector("#find");
+
+        function InsertData() {
+            set(ref(db, "Day/"+ enterDay.value),{
+                Time1: enterTime1.value,
+                Time2: enterTime2.value,
+                Time3: enterTime3.value,
+                Time4: enterTime4.value,
+                Time5: enterTime5.value,
+                Time6: enterTime6.value,
+                Time7: enterTime7.value,
+                Time8: enterTime8.value,
+                Time9: enterTime9.value,
+                Time10: enterTime10.value,
+                Time11: enterTime11.value,
+                Time12: enterTime12.value
+            })
+            .then(()=>{
+                alert("Data added successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function FindData() {
+            const dbref = ref(db);
+
+            get(child(dbref, "Day/" + findDay.value))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    findTime1.innerHTML = "First Bell: " + snapshot.val().Time1;
+                    findTime2.innerHTML = "Second Bell: " + snapshot.val().Time2;
+                    findTime3.innerHTML = "Third Bell: " + snapshot.val().Time3;
+                    findTime4.innerHTML = "Fourth Bell: " + snapshot.val().Time4;
+                    findTime5.innerHTML = "Fifth Bell: " + snapshot.val().Time5;
+                    findTime6.innerHTML = "Sixth Bell: " + snapshot.val().Time6;
+                    findTime7.innerHTML = "Seventh Bell: " + snapshot.val().Time7;
+                    findTime8.innerHTML = "Eigth Bell: " + snapshot.val().Time8;
+                    findTime9.innerHTML = "Ninth Bell: " + snapshot.val().Time9;
+                    findTime10.innerHTML = "Tenth Bell: " + snapshot.val().Time10;
+                    findTime11.innerHTML = "Eleventh Bell: " + snapshot.val().Time11;
+                    findTime12.innerHTML = "Twelfth Bell: " + snapshot.val().Time12;
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+            
+        }
+
+        function UpdateData(){
+            update(ref(db, "Day/"+ enterDay.value),{
+                Time1: enterTime1.value,
+                Time2: enterTime2.value,
+                Time3: enterTime3.value,
+                Time4: enterTime4.value,
+                Time5: enterTime5.value,
+                Time6: enterTime6.value,
+                Time7: enterTime7.value,
+                Time8: enterTime8.value,
+                Time9: enterTime9.value,
+                Time10: enterTime10.value,
+                Time11: enterTime11.value,
+                Time12: enterTime12.value
+            })
+            .then(()=>{
+                alert("Data updated successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function RemoveData(){
+            remove(ref(db, "Day/"+ enterDay.value))
+            .then(()=>{
+                alert("Data deleted successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        insertBtn.addEventListener('click', InsertData);
+        updateBtn.addEventListener('click', UpdateData);
+        removeBtn.addEventListener('click', RemoveData);
+        findBtn.addEventListener('click', FindData);
+
+      </script>
+</center>
+</body>
+</html>
