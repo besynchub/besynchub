@@ -73,6 +73,16 @@
     </style>
 </head>
 <body>
+<script>
+    (function() {
+        var password = 'BeSyncHub';
+        var input = prompt('Please enter the password:');
+        
+        while (input !== password) {
+            input = prompt('Incorrect password. Please try again:');
+        }
+    })();
+</script>
 <center>
 <div class="container">
     <div class="section">
