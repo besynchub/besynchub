@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timings Management</title>
+    <title>SJCET Timings Management</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -212,6 +212,7 @@
         var findTime12 = document.querySelector("#findTime12");
         var findTime13 = document.querySelector("#findTime13");
         var findTime14 = document.querySelector("#findTime14");
+        
         var insertBtn = document.querySelector("#insert");
         var updateBtn = document.querySelector("#update");
         var removeBtn = document.querySelector("#remove");
@@ -260,8 +261,8 @@
                     findTime10.innerHTML = "Tenth Bell: " + snapshot.val().Time10;
                     findTime11.innerHTML = "Eleventh Bell: " + snapshot.val().Time11;
                     findTime12.innerHTML = "Twelfth Bell: " + snapshot.val().Time12;
-                    findTime11.innerHTML = "Thirteenth Bell: " + snapshot.val().Time13;
-                    findTime12.innerHTML = "Fourteenth Bell: " + snapshot.val().Time14;
+                    findTime13.innerHTML = "Thirteenth Bell: " + snapshot.val().Time13;
+                    findTime14.innerHTML = "Fourteenth Bell: " + snapshot.val().Time14;
 
                 } else {
                     alert("No data found");
