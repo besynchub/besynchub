@@ -144,6 +144,8 @@
         <h3 id="findTime10"></h3>
         <h3 id="findTime11"></h3>
         <h3 id="findTime12"></h3>
+        <h3 id="findTime13"></h3>
+        <h3 id="findTime14"></h3>
     </div>
 </div>
     
@@ -192,6 +194,8 @@
         var enterTime10 = document.querySelector("#enterTime10");
         var enterTime11 = document.querySelector("#enterTime11");
         var enterTime12 = document.querySelector("#enterTime12");
+        var enterTime13 = document.querySelector("#enterTime13");
+        var enterTime14 = document.querySelector("#enterTime14");
 
         var findDay = document.querySelector("#findDay");
         var findTime1 = document.querySelector("#findTime1");
@@ -206,8 +210,8 @@
         var findTime10 = document.querySelector("#findTime10");
         var findTime11 = document.querySelector("#findTime11");
         var findTime12 = document.querySelector("#findTime12");
-      
-
+        var findTime13 = document.querySelector("#findTime13");
+        var findTime14 = document.querySelector("#findTime14");
         var insertBtn = document.querySelector("#insert");
         var updateBtn = document.querySelector("#update");
         var removeBtn = document.querySelector("#remove");
@@ -226,7 +230,9 @@
                 Time9: enterTime9.value,
                 Time10: enterTime10.value,
                 Time11: enterTime11.value,
-                Time12: enterTime12.value
+                Time12: enterTime12.value,
+                Time13: enterTime13.value,
+                Time14: enterTime14.value
             })
             .then(()=>{
                 alert("Data added successfully");
@@ -254,6 +260,9 @@
                     findTime10.innerHTML = "Tenth Bell: " + snapshot.val().Time10;
                     findTime11.innerHTML = "Eleventh Bell: " + snapshot.val().Time11;
                     findTime12.innerHTML = "Twelfth Bell: " + snapshot.val().Time12;
+                    findTime11.innerHTML = "Thirteenth Bell: " + snapshot.val().Time13;
+                    findTime12.innerHTML = "Fourteenth Bell: " + snapshot.val().Time14;
+
                 } else {
                     alert("No data found");
                 }
@@ -277,7 +286,9 @@
                 Time9: enterTime9.value,
                 Time10: enterTime10.value,
                 Time11: enterTime11.value,
-                Time12: enterTime12.value
+                Time12: enterTime12.value,
+                Time13: enterTime13.value,
+                Time14: enterTime14.value
             })
             .then(()=>{
                 alert("Data updated successfully");
