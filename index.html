@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJCET Timings Management</title>
+    <title>Timings Management</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f2f2f2;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-    
+
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
 
         .container {
             max-width: 1200px;
@@ -31,6 +36,12 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dark-mode .section {
+            background-color: #1e1e1e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         .section h1 {
@@ -39,7 +50,11 @@
             color: #333333;
         }
 
-        input[type="text"], select {
+        .dark-mode .section h1 {
+            color: #e0e0e0;
+        }
+
+        input[type="text"], select, input[type="time"] {
             width: calc(100% - 40px);
             padding: 10px;
             margin-bottom: 15px;
@@ -47,12 +62,18 @@
             border: 1px solid #dddddd;
             box-sizing: border-box;
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
 
-        input[type="text"]:focus, select:focus {
+        input[type="text"]:focus, select:focus, input[type="time"]:focus {
             outline: none;
             border-color: #4CAF50;
+        }
+
+        .dark-mode input[type="text"], .dark-mode select, .dark-mode input[type="time"] {
+            background-color: #333333;
+            color: #e0e0e0;
+            border-color: #555555;
         }
 
         button {
@@ -68,11 +89,34 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #2986cc;
+        }
+
+        .toggle-button {
+            width:100px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #cc0000;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode .toggle-button {
+            background-color: #333333;
+        }
+
+        .dark-mode .toggle-button:hover {
+            background-color: #2986cc;
         }
     </style>
 </head>
 <body>
+<button class="toggle-button" onclick="toggleDarkMode()">Dark Mode</button>
 <script>
     (function() {
         var password = 'BeSyncHub';
@@ -148,7 +192,17 @@
         <h3 id="findTime14"></h3>
     </div>
 </div>
-    
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const toggleButton = document.querySelector('.toggle-button');
+    if (document.body.classList.contains('dark-mode')) {
+        toggleButton.textContent = 'Day Mode';
+    } else {
+        toggleButton.textContent = 'Dark Mode';
+    }
+}
+</script>    
 
     <script type="module">
       
