@@ -160,7 +160,7 @@
         <input id="enterTime13" type="time" step="1" placeholder="Thirteenth Bell"><br>
         <input id="enterTime14" type="time" step="1" placeholder="Fourteenth Bell"><br><br>
 
-        <button id="insert">INSERT</button>
+        <!--<button id="insert">INSERT</button>-->
         <br><br>
         <button id="update">UPDATE</button>
         <button id="remove">REMOVE</button>
@@ -275,7 +275,7 @@ function toggleDarkMode() {
         var removeBtn = document.querySelector("#remove");
         var findBtn = document.querySelector("#find");
 
-        function InsertData() {
+        /*function InsertData() {
             set(ref(db, "Day/"+ enterDay.value),{
                 Time1: enterTime1.value,
                 Time2: enterTime2.value,
@@ -298,7 +298,7 @@ function toggleDarkMode() {
             .catch((error)=>{
                 alert(error);
             });
-        }
+        }*/
 
         function FindData() {
             const dbref = ref(db);
